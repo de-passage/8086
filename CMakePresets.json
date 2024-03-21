@@ -1,0 +1,77 @@
+{
+  "$schema": "https://cmake.org/cmake/help/latest/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
+  "version": 8,
+  "configurePresets": [
+    {
+      "name": "release",
+      "hidden": false,
+      "description": "Default configuration",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "debug",
+      "hidden": false,
+      "description": "Debug configuration",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+      }
+    },
+    {
+      "name": "default",
+      "inherits": [
+        "debug"
+      ]
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "hidden": false,
+      "description": "Default build",
+      "configurePreset": "default"
+    },
+    {
+      "name": "run",
+      "hidden": false,
+      "description": "Run the program",
+      "configurePreset": "default",
+      "targets": "run"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "configurePreset": "default",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "default",
+      "description": "Default workflow",
+      "steps": [
+        {
+          "name": "default",
+          "type": "configure"
+        },
+        {
+          "name": "default",
+          "type": "build"
+        },
+        {
+          "name": "default",
+          "type": "test"
+        }
+      ]
+    }
+  ]
+}
