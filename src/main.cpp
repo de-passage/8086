@@ -20,6 +20,7 @@ int main(int argc, char *argv[]) {
   char c;
   while (file.get(c)) {
     std::cout << std::hex << (uint16_t)c << std::endl;
+
   }
 
   return 0;
