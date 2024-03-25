@@ -132,11 +132,13 @@ int main(int argc, char *argv[]) {
   char c;
   while (file.get(c)) {
     uint8_t opcode = (c & 0b11111100) >> 2;
-    print_binary(std::cerr, opcode); std::cerr << '\n';
     if (opcode == MOV_OPCODE) {
-      decode_mov(file, c);
+      if (!decode_mov(file, c)) {
+        return 1;
+      }
     } else {
       std::cerr << "Unknown opcode: " << std::hex << (uint16_t)opcode << '\n';
+      return 1;
     }
 
     std::cout << '\n';
